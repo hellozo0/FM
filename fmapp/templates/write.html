@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>본문</h1>
+<br>
+<h1>제목: {{community.title}}</h1>
+<p>날짜: {{community.pub_date}}</p>
+<p>자세한 본문: {{community.body}}</p>
+<a href="{% url 'postupdate' community.id %}">수정하기</a>
+<br>
+<a href="{% url 'postdelete' community.id %}" onclick="return confirm('삭제하시겠습니까?')">삭제하기</a>
+{% endblock %}

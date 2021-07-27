@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>search 페이지 입니다.</h1>
+
+<!-- 검색하기 버튼 누르면 detail.html로 이동! -->
+<a href="{% url 'detail' %}">
+    <input type="submit" value="검색하기">
+</a>
+
+{% endblock %}
