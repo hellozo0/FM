@@ -3,6 +3,15 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 from .forms import RegisterForm
 
+
+from django.contrib.auth import get_user_model
+from django.views.generic import CreateView
+
+class RegisterView(CreateView):
+    model = get_user_model()
+    form_class = RegisterForm
+
+
 # Create your views here.
 def login_view(request):
     if request.method == 'POST':

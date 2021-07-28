@@ -30,6 +30,9 @@ ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'account.CustomUser'
 
+LANGUAGE_CODE = 'ko-KR'
+TIME_ZONE = 'Asia/Seoul'
+
 # Application definition
 
 INSTALLED_APPS = [
