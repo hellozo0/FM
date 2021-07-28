@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'fmapp',
     'account',
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [
