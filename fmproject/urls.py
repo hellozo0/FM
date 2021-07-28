@@ -31,5 +31,8 @@ urlpatterns = [
     path('fmapp/edit', fmapp.views.edit, name='edit'),
     path('fmapp/postupdate/<int:community_id>', fmapp.views.postupdate, name='postupdate'),
     path('fmapp/postdelete/<int:community_id>', fmapp.views.postdelete, name='postdelete'),
+    path('fmapp/<int:comhospital_id>', fmapp.views.write, name="write"),
+    path('fmapp/postupdate/<int:comhospital_id>', fmapp.views.postupdate, name='postupdate'),
+    path('fmapp/postdelete/<int:comhospital_id>', fmapp.views.postdelete, name='postdelete'),
 ] #+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT) #커뮤니티에서 사진 받는 경우 해당 static추가...?!
 #static을 병렬적으로 더해주는 형태

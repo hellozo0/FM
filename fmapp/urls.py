@@ -8,4 +8,6 @@ urlpatterns = [
     path('community/', community, name="community"),
     path('write/', write, name="write"),
     path('map/', map, name="map"),
+    path('community/comhospital', comhospital, name="comhospital"),
+    path('community/qna', qna, name="qna"),
 ]

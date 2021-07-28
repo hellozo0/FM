@@ -1,15 +1,18 @@
 from django import forms
-from .models import Community
+from .models import Community, ComHospital, Qna
 
 class PostForm(forms.ModelForm):
     class Meta:
         model = Community
-        fields = ['title', 'body', 'pub_date']
-        widgets = {
-            'pub_date' : forms.DateInput(
-                attrs = {
-                    'class' : 'form-control',
-                    'type' : 'date'
-                }
-            )
-        }
+        fields = ['title', 'body']
+
+class PostFormm(forms.ModelForm):
+    class Meta:
+        model = ComHospital
+        fields = ['title', 'body']
+
+class PostFormmm(forms.ModelForm):
+    class Meta:
+        model = Qna
+        fields = ['title', 'body']
+        
