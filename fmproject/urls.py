@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path,include
 from fmapp.views import home
 import fmapp.views
+import comhospital.views
+import qna.views
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -25,14 +27,25 @@ urlpatterns = [
     path('', home, name="home"),
     path('fmapp/', include('fmapp.urls')),
     path('account/', include('account.urls')), #계정 만드는 앱에 따로 urls.py만들었을 경우
-    path('fmapp/<int:community_id>', fmapp.views.write, name="write"),
+    path('fmapp/writef/<int:community_id>', fmapp.views.writef, name="writef"),
     path('fmapp/new', fmapp.views.new, name='new'),
     path('fmapp/postcreate', fmapp.views.postcreate, name='postcreate'),
     path('fmapp/edit', fmapp.views.edit, name='edit'),
     path('fmapp/postupdate/<int:community_id>', fmapp.views.postupdate, name='postupdate'),
     path('fmapp/postdelete/<int:community_id>', fmapp.views.postdelete, name='postdelete'),
-    path('fmapp/<int:comhospital_id>', fmapp.views.write, name="write"),
-    path('fmapp/postupdate/<int:comhospital_id>', fmapp.views.postupdate, name='postupdate'),
-    path('fmapp/postdelete/<int:comhospital_id>', fmapp.views.postdelete, name='postdelete'),
+    path('comhospital/', include('comhospital.urls')),
+    path('comhospital/writes/<int:comhospital_id>', comhospital.views.writes, name="writes"),
+    path('comhospital/news', comhospital.views.news, name='news'),
+    path('comhospital/postcreates', comhospital.views.postcreates, name='postcreates'),
+    path('comhospital/edits', comhospital.views.edits, name="edits"),
+    path('comhospital/postupdates/<int:comhospital_id>', comhospital.views.postupdates, name='postupdates'),
+    path('comhospital/postdeletes/<int:comhospital_id>', comhospital.views.postdeletes, name='postdeletes'),
+    path('qna/', include('qna.urls')),
+    path('qna/writet/<int:qna_id>', qna.views.writet, name="writet"),
+    path('qna/newt', qna.views.newt, name='newt'),
+    path('qna/postcreatet', qna.views.postcreatet, name='postcreatet'),
+    path('qna/editt', qna.views.editt, name='editt'),
+    path('qna/postupdatet/<int:qna_id>', qna.views.postupdatet, name='postupdatet'),
+    path('qna/postdeletet/<int:qna_id>', qna.views.postdeletet, name='postdeletet'),
 ] #+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT) #커뮤니티에서 사진 받는 경우 해당 static추가...?!
 #static을 병렬적으로 더해주는 형태

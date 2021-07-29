@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>community 페이지 입니다.</h1>
+<h1>QnA 게시판입니다.</h1>
 <div class="row">
 
     <div class="col-lg-3">
@@ -23,20 +23,18 @@
                 <thead class="thead-dark">
                   <tr>
                     <th scope="col">제목</th>
-                    <th scope="col">아이디</th>
                     <th scope="col">작성일</th>
                     <th scope="col">최종수정일</th>
                   </tr>
                 </thead>
           
                 <tbody>
-                  {% for community in communities %}
+                  {% for qna in qnas %}
                   <tr>
                     
-                    <td><a href="{% url 'write' community.id %}">{{ community.title }}</a></td>
-                    <td>{{ community.writer }}</td>
-                    <td>{{ community.pub_date }}</td>
-                    <td>{{ community.update }}</td>
+                    <td><a href="{% url 'writet' qna.id %}">{{ qna.title }}</a></td>
+                    <td>{{ qna.pub_date }}</td>
+                    <td>{{ qna.update }}</td>
                   </tr>
                   {% endfor %}
                 </tbody>
@@ -45,7 +43,7 @@
           </div>
           <div class="row">
             <div class="col-12">
-                <a href="{% url 'postcreate' %}" class="list-group-item list-group-item-info text-center font-weight-bold">글쓰기</a>
+                <a href="{% url 'postcreatet' %}" class="list-group-item list-group-item-info text-center font-weight-bold">글쓰기</a>
             </div>
           </div>
 </div>

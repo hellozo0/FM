@@ -6,8 +6,6 @@ urlpatterns = [
     path('search/', search, name="search"),
     path('detail/', detail, name="detail"),
     path('community/', community, name="community"),
-    path('write/', write, name="write"),
+    path('writef/', writef, name="writef"),
     path('map/', map, name="map"),
-    path('community/comhospital', comhospital, name="comhospital"),
-    path('community/qna', qna, name="qna"),
 ]

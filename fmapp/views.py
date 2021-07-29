@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Community, ComHospital, Qna  #Community에서의 데이터를 가져오기 위해 --> community.html에서 사용될 듯
+from .models import Community #Community에서의 데이터를 가져오기 위해 --> community.html에서 사용될 듯
 from .forms import PostForm
 
 def home(request):
@@ -46,24 +46,16 @@ def postupdate(request, community_id):
         if form.is_valid():
             post = form.save(commit=False)
             post.save()
-            return redirect('write', community_id=post.pk)
+            return redirect('writef', community_id=post.pk)
     else:
         form = PostForm(instance=post)
         return render(request, 'edit.html', {'form':form})
 
-def write(request, community_id):
+def writef(request, community_id):
     community_detail = get_object_or_404(Community, pk=community_id)
-    return render(request, 'write.html', {'community':community_detail})
+    return render(request, 'writef.html', {'community':community_detail})
 
 def postdelete(request, community_id):
     post = get_object_or_404(Community, pk=community_id)
     post.delete()
     return redirect('community')
-
-def comhospital(request):
-    hospitals = ComHospital.objects.all().order_by('-id')
-    return render(request, 'comhospital.html', {"hospitals":hospitals})
-
-def qna(request):
-    qnas = Qna.objects.all().order_by('-id')
-    return render(request, 'qna.html', {"qnas":qnas})

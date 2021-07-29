@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>본문</h1>
+<br>
+<h1>제목: {{qna.title}}</h1>
+<p>날짜: {{qna.pub_date}}</p>
+<p>자세한 본문: {{qna.body}}</p>
+<a href="{% url 'postupdatet' qna.id %}">수정하기</a>
+<br>
+<a href="{% url 'postdeletet' qna.id %}" onclick="return confirm('삭제하시겠습니까?')">삭제하기</a>
+{% endblock %}

@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'fmapp',
     'account',
     'bootstrap4',
+    'comhospital',
+    'qna',
 ]
 
 MIDDLEWARE = [
