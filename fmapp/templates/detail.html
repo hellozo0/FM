@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>detail페이지 입니다.</h1>
+
+<script>
+    $("input:checkbox[name=배]:checked").each(function() {
+        var check_values = $(this).val();
+        console.log(check_values);
+    });
+</script>
+{% endblock %}
