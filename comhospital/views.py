@@ -1,11 +1,16 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import ComHospital #Community에서의 데이터를 가져오기 위해 --> community.html에서 사용될 듯
 from .forms import PostForm
+from django.core.paginator import Paginator
 
 # Create your views here.
 def comhospital(request):
-    comhospitals = ComHospital.objects.all().order_by('-id')
-    return render(request, 'comhospital.html', {"comhospitals":comhospitals})
+    q = ComHospital.objects.order_by('-id')
+    q_list = ComHospital.objects.all().order_by('-id')
+    paginator = Paginator(q_list,5)
+    page = request.GET.get('page')
+    posts = paginator.get_page(page)
+    return render(request, 'comhospital.html',{'quiz':q, 'posts':posts})
 
 def news(request):
     return render(request, 'news.html')

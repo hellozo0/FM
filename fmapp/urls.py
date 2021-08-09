@@ -9,4 +9,5 @@ urlpatterns = [
     path('writef/', writef, name="writef"),
     path('map/', map, name="map"),
     path('developers/', developers, name="developers"),
+    path('post_search/', post_search, name="post_search"),
 ]

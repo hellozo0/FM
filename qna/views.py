@@ -1,11 +1,16 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Qna #Community에서의 데이터를 가져오기 위해 --> community.html에서 사용될 듯
 from .forms import PostForm
+from django.core.paginator import Paginator
 
 # Create your views here.
 def qna(request):
-    qnas = Qna.objects.all().order_by('-id')
-    return render(request, 'qna.html', {"qnas":qnas})
+    q = Qna.objects.order_by('-id')
+    q_list = Qna.objects.all().order_by('-id')
+    paginator = Paginator(q_list,5)
+    page = request.GET.get('page')
+    posts = paginator.get_page(page)
+    return render(request, 'qna.html',{'quiz':q, 'posts':posts})
 
 def newt(request):
     return render(request, 'newt.html')

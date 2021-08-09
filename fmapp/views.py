@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Community #Community에서의 데이터를 가져오기 위해 --> community.html에서 사용될 듯
 from .forms import PostForm, SearchForm
+from django.core.paginator import Paginator
+from django.db.models import Q
 
 def home(request):
     return render(request, 'home.html')
@@ -17,8 +19,12 @@ def detail(request):
     return render(request, 'detail.html') 
 
 def community(request):
-    communities = Community.objects.all().order_by('-id')
-    return render(request, 'community.html', {"communities":communities})
+    q = Community.objects.order_by('-id')
+    q_list = Community.objects.all().order_by('-id')
+    paginator = Paginator(q_list,5)
+    page = request.GET.get('page')
+    posts = paginator.get_page(page)
+    return render(request, 'community.html',{'quiz':q, 'posts':posts})
 
 def map(request):
     return render(request, 'map.html')
@@ -35,7 +41,8 @@ def postcreate(request):
         form = PostForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
-            post.save()
+            post.user = request.user
+            post = form.save()
             return redirect('community')
     else:
         form = PostForm()
@@ -64,4 +71,18 @@ def postdelete(request, community_id):
     post = get_object_or_404(Community, pk=community_id)
     post.delete()
     return redirect('community')
+
+def post_search(request):
+    blogs = Community.objects.all().order_by('-id')
+
+    q = request.POST.get('q', "") 
+    title_q = Q(title__icontains = q)
+    body_q = Q(body__icontains = q)
+    
+    if q:
+        blogs = blogs.filter(title_q | body_q)
+        return render(request, 'post_search.html', {'blogs' : blogs, 'q' : q})
+    
+    else:
+        return render(request, 'post_search.html')
    
