@@ -5,6 +5,9 @@ FM_해커톤(장고를 사용한 웹사이트 구현)
 
 - 두명이상 씩 코딩할 때는 liveshare 같이 하기
 
+<사이트 링크>(PC에 최적화 되어있습니다.)
+https://likelionfm.herokuapp.com
+
 < 다운받아야하는 라이브러리들 > <br>
 pip install Django <br>
 pip install django-bootstrap4 <br>
